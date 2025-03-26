@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "ocr-p13"
+version = "0.1.0"
+description = "Développez une architecture back-end sécurisée avec Python et SQL"
+authors = ["Damien Vincelot <damien.vincelot@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
