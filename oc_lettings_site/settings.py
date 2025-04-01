@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -21,7 +21,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'oc_lettings_site.apps.OCLettingsSiteConfig',  # Delete
+    'oc_lettings_site.apps.OCLettingsSiteConfig',
     'lettings.apps.LettingsConfig',
     'profiles.apps.ProfilesConfig',
     'django.contrib.admin',
@@ -42,7 +42,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = 'oc_lettings_site.urls'
 
 TEMPLATES = [
     {
@@ -60,7 +60,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = 'oc_lettings_site.wsgi.application'
 
 
 # Database
