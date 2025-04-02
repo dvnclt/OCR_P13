@@ -1,3 +1,10 @@
+"""
+URLconf pour l'application oc_lettings_site.
+
+Ce fichier contient la configuration des URL pour l'application Django. Il lie les URL aux
+vues correspondantes, y compris celles des modules lettings et profiles. Il définit aussi
+l'URL de l'administration Django.
+"""
 from django.contrib import admin
 from django.urls import path
 
