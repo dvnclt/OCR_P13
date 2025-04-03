@@ -5,6 +5,7 @@ Ce fichier contient les vues qui rendent les pages principales de l'application.
 il inclut une vue pour la page d'accueil
 """
 from django.shortcuts import render
+from django.http import HttpResponse
 
 
 # Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie quam lobortis leo
@@ -26,3 +27,11 @@ def index(request):
         HttpResponse : Page d'accueil rendue avec le template 'index.html'
     """
     return render(request, 'index.html')
+
+
+def trigger_error(request):
+    """
+    Provoque une erreur pour tester Sentry
+    """
+    division_by_zero = 1 / 0  # Provoque une erreur
+    return HttpResponse("This will never be reached.")

@@ -19,4 +19,5 @@ urlpatterns = [
     path('profiles/', profiles_views.index, name='profiles_index'),
     path('profiles/<str:username>/', profiles_views.profile, name='profile'),
     path('admin/', admin.site.urls),
+    path('sentry-debug/', views.trigger_error, name='sentry_debug'),
 ]

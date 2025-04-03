@@ -1,4 +1,11 @@
 **/__pycache__
 *.pyc
-venv
 .DS_Store
+.coverage
+.pytest_cache
+
+venv
+htmlcov/
+flake8-report/
+env/
+.env
