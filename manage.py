@@ -11,6 +11,7 @@ import logging
 
 logger = logging.getLogger('django')
 
+
 def main():
     """
     Exécute la commande de gestion de Django.

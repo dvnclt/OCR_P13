@@ -33,8 +33,9 @@ def test_sentry_error(request):
     """
     Provoque une erreur pour tester Sentry
     """
-    division_by_zero = 1 / 0  # Provoque une erreur
+    division_by_zero = 1 / 0  # Provoque une erreur  # noqa: F841
     return HttpResponse("Erreur provoquée : Test Sentry")
+
 
 def test_middleware_error(request):
     """

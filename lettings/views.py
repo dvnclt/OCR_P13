@@ -10,6 +10,7 @@ from .models import Letting
 
 logger = logging.getLogger("lettings")
 
+
 # Aenean leo magna, vestibulum et tincidunt fermentum, consectetur quis velit. Sed non placerat
 # massa. Integer est nunc, pulvinar a tempor et, bibendum id arcu. Vestibulum ante ipsum primis in
 # faucibus orci luctus et ultrices posuere cubilia curae; Cras eget scelerisque

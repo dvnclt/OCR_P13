@@ -9,6 +9,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class ErrorLoggingMiddleware:
     """
     Middleware pour capturer et logger les erreurs non gérées.
