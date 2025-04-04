@@ -5,8 +5,10 @@ Ce fichier contient les vues permettant d'afficher la liste des locations et les
 d'une location spécifique
 """
 from django.shortcuts import render
+import logging
 from .models import Letting
 
+logger = logging.getLogger("lettings")
 
 # Aenean leo magna, vestibulum et tincidunt fermentum, consectetur quis velit. Sed non placerat
 # massa. Integer est nunc, pulvinar a tempor et, bibendum id arcu. Vestibulum ante ipsum primis in
@@ -23,7 +25,11 @@ def index(request):
     Retour :
         HttpResponse : Page HTML affichant la liste des locations
     """
-    lettings_list = Letting.objects.all()
+    try:
+        lettings_list = Letting.objects.all()
+    except Exception as e:
+        logger.error(f"Erreur lors de la récupération des données : {e}")
+        raise
     context = {'lettings_list': lettings_list}
     return render(request, 'lettings/index.html', context)
 
@@ -52,7 +58,14 @@ def letting(request, letting_id):
     Retour :
         HttpResponse : Page HTML affichant les détails de la location
     """
-    letting = Letting.objects.get(id=letting_id)
+    try:
+        letting = Letting.objects.get(id=letting_id)
+    except Letting.DoesNotExist:
+        logger.warning(f"ID introuvable : {letting_id}")
+        raise
+    except Exception as e:
+        logger.error(f"Erreur lors de la récupération des données : {e}")
+        raise
     context = {
         'title': letting.title,
         'address': letting.address,

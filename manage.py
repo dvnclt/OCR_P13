@@ -7,7 +7,9 @@ exécute les commandes via `execute_from_command_line` de Django.
 """
 import os
 import sys
+import logging
 
+logger = logging.getLogger('django')
 
 def main():
     """
@@ -24,6 +26,7 @@ def main():
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
+        logger.error(f"Erreur d'importation de Django : {exc}")
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "
             "available on your PYTHONPATH environment variable? Did you "

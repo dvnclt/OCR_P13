@@ -7,8 +7,10 @@ deux vues principales : une pour l'index des profils et une pour afficher
 les informations d'un profil individuel.
 """
 from django.shortcuts import render
+import logging
 from .models import Profile
 
+logger = logging.getLogger("profiles")
 
 # Sed placerat quam in pulvinar commodo. Nullam laoreet consectetur ex, sed consequat libero
 # pulvinar eget. Fusc faucibus, urna quis auctor pharetra, massa dolor cursus neque, quis dictum
@@ -28,7 +30,11 @@ def index(request):
         HttpResponse : La réponse contenant le rendu du template avec la liste
         des profils.
     """
-    profiles_list = Profile.objects.all()
+    try:
+        profiles_list = Profile.objects.all()
+    except Exception as e:
+        logger.error(f"Erreur lors de la récupération des données : {e}")
+        raise
     context = {'profiles_list': profiles_list}
     return render(request, 'profiles/index.html', context)
 
@@ -53,6 +59,13 @@ def profile(request, username):
         HttpResponse : La réponse contenant le rendu du template avec les
         informations du profil de l'utilisateur.
     """
-    profile = Profile.objects.get(user__username=username)
+    try:
+        profile = Profile.objects.get(user__username=username)
+    except Profile.DoesNotExist:
+        logger.warning(f"Profil introuvable pour : {username}")
+        raise
+    except Exception as e:
+        logger.error(f"Erreur lors de la récupération des données : {e}")
+        raise
     context = {'profile': profile}
     return render(request, 'profiles/profile.html', context)

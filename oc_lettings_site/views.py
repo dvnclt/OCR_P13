@@ -29,9 +29,15 @@ def index(request):
     return render(request, 'index.html')
 
 
-def trigger_error(request):
+def test_sentry_error(request):
     """
     Provoque une erreur pour tester Sentry
     """
     division_by_zero = 1 / 0  # Provoque une erreur
-    return HttpResponse("This will never be reached.")
+    return HttpResponse("Erreur provoquée : Test Sentry")
+
+def test_middleware_error(request):
+    """
+    Provoque une erreur non gérée pour tester le middleware
+    """
+    raise ValueError("Erreur provoquée : Test Middleware")
