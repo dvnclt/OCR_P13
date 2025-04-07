@@ -4,7 +4,6 @@
 .coverage
 .pytest_cache
 
-venv
 htmlcov/
 flake8-report/
 env/
