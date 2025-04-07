@@ -127,7 +127,6 @@ sentry_sdk.init(
     integrations=[DjangoIntegration()],
     traces_sample_rate=1.0,  # Ajustez selon vos besoins (1.0 = 100% des transactions)
 )
-print("SENTRY_DSN:", os.getenv("SENTRY_DSN"))
 
 LOGGING = {
     'version': 1,
