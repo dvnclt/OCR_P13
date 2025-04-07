@@ -68,7 +68,7 @@ jobs:
       # Étape 3 : Construire l'image Docker
       - name: Build Docker image
         run: |
-          docker build -f ./Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/ocr_p13:${{ github.sha }} .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/ocr_p13:${{ github.sha }} .
 
       # Étape 4 : Pousser l'image vers Docker Hub
       - name: Push Docker image
