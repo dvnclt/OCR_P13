@@ -13,17 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Étape 1 : Vérifier le code source
+      # Vérifie le code source
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Étape 2 : Configurer Python
+      # Configure Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.9
 
-      # Étape 3 : Installer les dépendances
+      # Installe les dépendances
       - name: Install dependencies
         run: |
           python -m venv env
@@ -31,19 +31,19 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Étape 4 : Exécuter le linting
+      # Vérifie le linting
       - name: Run flake8
         run: |
           source env/bin/activate
           flake8 .
 
-      # Étape 5 : Exécuter les tests avec pytest
+      # Exécute les tests avec pytest
       - name: Run tests
         run: |
           source env/bin/activate
           coverage run -m pytest
       
-      # Étape 6 : Vérifier la couverture de test
+      # Vérifie la couverture de test
       - name: Check coverage
         run: |
           source env/bin/activate
@@ -54,23 +54,25 @@ jobs:
     needs: build-and-test  # Ce job dépend du succès du job précédent
 
     steps:
-      # Étape 1 : Vérifier le code source
+      # Vérifie le code source
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Étape 2 : Se connecter à Docker Hub
+      # Connexion à Docker Hub
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      # Étape 3 : Construire l'image Docker
+      # Construit l'image Docker
       - name: Build Docker image
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/ocr_p13:${{ github.sha }} .
+          docker tag ${{ secrets.DOCKER_USERNAME }}/ocr_p13:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/ocr_p13:latest
 
-      # Étape 4 : Pousser l'image vers Docker Hub
+      # Pousse l'image vers Docker Hub
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/ocr_p13:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/ocr_p13:latest
