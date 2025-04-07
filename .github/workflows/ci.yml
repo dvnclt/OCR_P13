@@ -65,6 +65,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
+      - name: Debug – Afficher le chemin et les fichiers
+        run: |
+          echo "📁 Chemin courant : $(pwd)"
+          echo "📄 Contenu du dossier courant :"
+          ls -la
+          echo "📄 Contenu de .github/workflows :"
+          ls -la .github/workflows || echo "Pas de dossier workflows trouvé"
+
       # Étape 3 : Construire l'image Docker
       - name: Build Docker image
         run: |
