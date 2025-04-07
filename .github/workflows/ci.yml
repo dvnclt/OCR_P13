@@ -1,0 +1,50 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Étape 1 : Vérifier le code source
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Étape 2 : Configurer Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      # Étape 3 : Installer les dépendances
+      - name: Install dependencies
+        run: |
+          python -m venv env
+          source env/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Étape 4 : Exécuter le linting
+      - name: Run flake8
+        run: |
+          source env/bin/activate
+          flake8 .
+
+      # Étape 5 : Exécuter les tests avec pytest
+      - name: Run tests
+        run: |
+          source env/bin/activate
+          coverage run -m pytest
+      
+      # Étape 6 : Vérifier la couverture de test
+      - name: Check coverage
+        run: |
+          source env/bin/activate
+          coverage report --fail-under=80
