@@ -49,8 +49,6 @@ jobs:
           source env/bin/activate
           coverage report --fail-under=80
 
-          name: CI Pipeline
-
   build-and-push-docker-image:
     runs-on: ubuntu-latest
     needs: build-and-test  # Ce job dépend du succès du job précédent
