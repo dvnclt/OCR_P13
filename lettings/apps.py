@@ -1,7 +1,8 @@
 """
 Configuration de l'application Lettings
 
-Cette classe permet de configurer certains aspects de l'application, comme son nom
+Cette classe permet de configurer certains aspects de l'application, comme son
+nom
 """
 from django.apps import AppConfig
 

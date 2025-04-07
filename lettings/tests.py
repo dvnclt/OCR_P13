@@ -103,7 +103,8 @@ def test_letting_view(client):
     letting = Letting.objects.create(title="Another Letting", address=address)
 
     # Requête vers la vue
-    response = client.get(reverse('letting', kwargs={'letting_id': letting.id}))
+    response = client.get(reverse('letting',
+                                  kwargs={'letting_id': letting.id}))
 
     # Assertions
     assert response.status_code == 200

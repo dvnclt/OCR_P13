@@ -1,9 +1,9 @@
 """
 URLconf pour l'application oc_lettings_site.
 
-Ce fichier contient la configuration des URL pour l'application Django. Il lie les URL aux
-vues correspondantes, y compris celles des modules lettings et profiles. Il définit aussi
-l'URL de l'administration Django.
+Ce fichier contient la configuration des URL pour l'application Django. Il lie
+les URL aux vues correspondantes, y compris celles des modules lettings et
+profiles. Il définit aussi l'URL de l'administration Django.
 """
 from django.contrib import admin
 from django.urls import path
@@ -20,5 +20,6 @@ urlpatterns = [
     path('profiles/<str:username>/', profiles_views.profile, name='profile'),
     path('admin/', admin.site.urls),
     path('sentry-test/', views.test_sentry_error, name='sentry_test'),
-    path('middleware-test/', views.test_middleware_error, name='middleware_test'),
+    path('middleware-test/', views.test_middleware_error,
+         name='middleware_test'),
 ]

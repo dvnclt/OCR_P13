@@ -1,9 +1,10 @@
 """
 Script de gestion de Django.
 
-Ce script est utilisé pour lancer les commandes de gestion Django via la ligne de commande.
-Il définit l'environnement Django en fonction du fichier de paramètres approprié et
-exécute les commandes via `execute_from_command_line` de Django.
+Ce script est utilisé pour lancer les commandes de gestion Django via la ligne
+de commande. Il définit l'environnement Django en fonction du fichier de
+paramètres approprié et exécute les commandes via `execute_from_command_line`
+de Django.
 """
 import os
 import sys
@@ -17,13 +18,15 @@ def main():
     Exécute la commande de gestion de Django.
 
     Cette fonction configure l'environnement Django en définissant le module de
-    paramètres à utiliser et en appelant la fonction `execute_from_command_line`
-    pour traiter les arguments de la ligne de commande.
+    paramètres à utiliser et en appelant la fonction
+    `execute_from_command_line` pour traiter les arguments de la ligne de
+    commande.
 
-    Elle est utilisée pour exécuter les commandes comme `python manage.py migrate`,
-    `python manage.py runserver`, etc.
+    Elle est utilisée pour exécuter les commandes comme `python manage.py
+    migrate`, `python manage.py runserver`, etc.
     """
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+                          'oc_lettings_site.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

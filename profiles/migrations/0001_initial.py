@@ -2,10 +2,11 @@
 """
 Migration pour la création du modèle Profile.
 
-Cette migration crée un modèle 'Profile' pour lier des informations supplémentaires
-à un utilisateur, telles que la ville favorite de l'utilisateur. Le modèle 'Profile' 
-est lié au modèle d'utilisateur via une relation OneToOne, garantissant qu'un utilisateur
-a un seul profil et qu'un profil appartient à un seul utilisateur.
+Cette migration crée un modèle 'Profile' pour lier des informations
+supplémentaires à un utilisateur, telles que la ville favorite de
+l'utilisateur. Le modèle 'Profile' est lié au modèle d'utilisateur via une
+relation OneToOne, garantissant qu'un utilisateur a un seul profil et qu'un
+profil appartient à un seul utilisateur.
 """
 from django.conf import settings
 from django.db import migrations, models
@@ -15,10 +16,10 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
     """
     Migration pour la création du modèle 'Profile'.
-    
-    Cette migration crée le modèle 'Profile' avec un champ pour stocker la ville favorite
-    d'un utilisateur. Elle définit également la relation OneToOne avec le modèle utilisateur
-    fourni par `settings.AUTH_USER_MODEL`.
+
+    Cette migration crée le modèle 'Profile' avec un champ pour stocker la
+    ville favorite d'un utilisateur. Elle définit également la relation
+    OneToOne avec le modèle utilisateur fourni par `settings.AUTH_USER_MODEL`.
     """
     initial = True
 
@@ -30,9 +31,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Profile',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('favorite_city', models.CharField(blank=True, max_length=64)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL
+                    )),
             ],
         ),
     ]

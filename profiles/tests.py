@@ -9,7 +9,8 @@ def test_profile_str():
     """
     Teste la méthode __str__ du modèle Profile.
     """
-    user = User.objects.create_user(username="testuser", password="password123")
+    user = User.objects.create_user(username="testuser",
+                                    password="password123")
     profile = Profile.objects.create(user=user, favorite_city="Paris")
     assert str(profile) == "testuser"
 
@@ -19,7 +20,8 @@ def test_profile_favorite_city():
     """
     Teste que le champ favorite_city est correctement enregistré.
     """
-    user = User.objects.create_user(username="testuser", password="password123")
+    user = User.objects.create_user(username="testuser",
+                                    password="password123")
     profile = Profile.objects.create(user=user, favorite_city="Paris")
     assert profile.favorite_city == "Paris"
 
@@ -29,7 +31,8 @@ def test_profile_user_relationship():
     """
     Teste la relation OneToOne entre Profile et User.
     """
-    user = User.objects.create_user(username="testuser", password="password123")
+    user = User.objects.create_user(username="testuser",
+                                    password="password123")
     profile = Profile.objects.create(user=user, favorite_city="Paris")
 
     # Vérifie que le profil est lié à l'utilisateur
@@ -68,11 +71,14 @@ def test_profile_view(client):
     utilise le bon template et affiche les informations correctes.
     """
     # Création de données fictives
-    user = User.objects.create_user(username="testuser", password="password123")
-    profile = Profile.objects.create(user=user, favorite_city="Tokyo")  # noqa: F841
+    user = User.objects.create_user(username="testuser",
+                                    password="password123")
+    profile = Profile.objects.create(user=user,  # noqa: F841
+                                     favorite_city="Tokyo")
 
     # Requête vers la vue
-    response = client.get(reverse('profile', kwargs={'username': user.username}))
+    response = client.get(reverse('profile',
+                                  kwargs={'username': user.username}))
 
     # Assertions
     assert response.status_code == 200

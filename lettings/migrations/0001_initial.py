@@ -2,8 +2,9 @@
 """
 Migration Django pour la création des modèles Address et Letting.
 
-Cette migration définit la structure de la base de données pour les adresses et les locations
-Elle comprend la création des modèles et la définition des champs avec leurs contraintes
+Cette migration définit la structure de la base de données pour les adresses
+et les locations. Elle comprend la création des modèles et la définition des
+champs avec leurs contraintes
 """
 import django.core.validators
 from django.db import migrations, models
@@ -12,7 +13,8 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
     """
-    Classe représentant la migration initiale pour la création des modèles Address et Letting
+    Classe représentant la migration initiale pour la création des modèles
+    Address et Letting
     """
     initial = True
 
@@ -23,21 +25,43 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Address',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('number', models.PositiveIntegerField(validators=[django.core.validators.MaxValueValidator(9999)])),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
+                ('number',
+                 models.PositiveIntegerField(
+                     validators=[django.core.validators.MaxValueValidator(
+                         9999)])),
                 ('street', models.CharField(max_length=64)),
                 ('city', models.CharField(max_length=64)),
-                ('state', models.CharField(max_length=2, validators=[django.core.validators.MinLengthValidator(2)])),
-                ('zip_code', models.PositiveIntegerField(validators=[django.core.validators.MaxValueValidator(99999)])),
-                ('country_iso_code', models.CharField(max_length=3, validators=[django.core.validators.MinLengthValidator(3)])),
+                ('state',
+                 models.CharField(
+                     max_length=2,
+                     validators=[django.core.validators.MinLengthValidator(2)]
+                     )),
+                ('zip_code',
+                 models.PositiveIntegerField(
+                     validators=[django.core.validators.MaxValueValidator(
+                         99999)])),
+                ('country_iso_code',
+                 models.CharField(
+                     max_length=3,
+                     validators=[django.core.validators.MinLengthValidator(3)]
+                     )),
             ],
         ),
         migrations.CreateModel(
             name='Letting',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('title', models.CharField(max_length=256)),
-                ('address', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='lettings.Address')),
+                ('address',
+                 models.OneToOneField(
+                     on_delete=django.db.models.deletion.CASCADE,
+                     to='lettings.Address'
+                     )),
             ],
         ),
     ]

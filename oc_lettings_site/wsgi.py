@@ -9,7 +9,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-# Définition de la variable d'environnement DJANGO_SETTINGS_MODULE pour spécifier les paramètres
+# Définition de la variable d'environnement DJANGO_SETTINGS_MODULE pour
+# spécifier les paramètres
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
 
 # L'application WSGI pour le déploiement

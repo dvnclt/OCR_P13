@@ -1,7 +1,8 @@
 """
 Définit les modèles de l'application Lettings
 
-Ce fichier contient les modèles Address et Letting utilisés pour stocker les informations
+Ce fichier contient les modèles Address et Letting utilisés pour stocker les
+informations
 des adresses et des locations dans la base de données
 """
 from django.db import models
@@ -24,8 +25,10 @@ class Address(models.Model):
     street = models.CharField(max_length=64)
     city = models.CharField(max_length=64)
     state = models.CharField(max_length=2, validators=[MinLengthValidator(2)])
-    zip_code = models.PositiveIntegerField(validators=[MaxValueValidator(99999)])
-    country_iso_code = models.CharField(max_length=3, validators=[MinLengthValidator(3)])
+    zip_code = models.PositiveIntegerField(
+        validators=[MaxValueValidator(99999)])
+    country_iso_code = models.CharField(max_length=3,
+                                        validators=[MinLengthValidator(3)])
 
     def __str__(self):
         """
@@ -49,13 +52,13 @@ class Letting(models.Model):
 
     Attributs :
         - title (str) : Titre de la location (max : 256 caractères)
-        - address (Address) : Adresse associée à la location (relation OneToOne)
+        - address (Address) : Adresse associée à la location
     """
     title = models.CharField(max_length=256)
     address = models.OneToOneField(Address, on_delete=models.CASCADE)
 
     def __str__(self):
         """
-        Retourne une représentation textuelle de la location sous forme de chaîne
+        Retourne une représentation textuelle de la location
         """
         return self.title

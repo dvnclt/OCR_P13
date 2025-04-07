@@ -13,9 +13,9 @@ from .models import Profile
 logger = logging.getLogger("profiles")
 
 
-# Sed placerat quam in pulvinar commodo. Nullam laoreet consectetur ex, sed consequat libero
-# pulvinar eget. Fusc faucibus, urna quis auctor pharetra, massa dolor cursus neque, quis dictum
-# lacus d
+# Sed placerat quam in pulvinar commodo. Nullam laoreet consectetur ex, sed
+# consequat libero pulvinar eget. Fusc faucibus, urna quis auctor pharetra,
+# massa dolor cursus neque, quis dictum lacus d
 def index(request):
     """
     Affiche la liste des profils.
@@ -41,16 +41,18 @@ def index(request):
 
 
 # Aliquam sed metus eget nisi tincidunt ornare accumsan eget lac
-# laoreet neque quis, pellentesque dui. Nullam facilisis pharetra vulputate. Sed tincidunt, dolor
-# id facilisis fringilla, eros leo tristique lacus, it. Nam aliquam dignissim congue.
-# Pellentesque habitant morbi tristique senectus et netus et males
+# laoreet neque quis, pellentesque dui. Nullam facilisis pharetra vulputate.
+# Sed tincidunt, dolor id facilisis fringilla, eros leo tristique lacus, it.
+# Nam aliquam dignissim congue. Pellentesque habitant morbi tristique senectus
+# et netus et males
 def profile(request, username):
     """
     Affiche les détails d'un profil utilisateur spécifique.
 
     Cette vue récupère un profil spécifique en fonction du nom d'utilisateur
     et le passe au template 'profiles/profile.html'. Elle permet de visualiser
-    des informations détaillées sur un utilisateur, telles que la ville favorite.
+    des informations détaillées sur un utilisateur, telles que la ville
+    favorite.
 
     Paramètres :
         request (HttpRequest) : L'objet de requête HTTP.

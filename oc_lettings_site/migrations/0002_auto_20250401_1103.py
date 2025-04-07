@@ -2,8 +2,9 @@
 """
 Migration Django pour la modification du champ 'user' dans le modèle Profile
 
-Cette migration met à jour la relation OneToOne entre Profile et User en ajoutant un related_name
-Cela permet d'accéder plus facilement au profil d'un utilisateur via 'user.oc_lettings_profile'
+Cette migration met à jour la relation OneToOne entre Profile et User en
+ajoutant un related_name. Cela permet d'accéder plus facilement au profil d'un
+utilisateur via 'user.oc_lettings_profile'
 """
 from django.conf import settings
 from django.db import migrations, models
@@ -23,6 +24,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='profile',
             name='user',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='oc_lettings_profile', to=settings.AUTH_USER_MODEL),
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='oc_lettings_profile',
+                to=settings.AUTH_USER_MODEL
+                ),
         ),
     ]

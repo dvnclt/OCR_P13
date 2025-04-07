@@ -1,25 +1,29 @@
 """
-Migration pour transférer les données du modèle 'Profile' de 'oc_lettings_site' vers 'profiles'.
+Migration pour transférer les données du modèle 'Profile' de 'oc_lettings_site'
+vers 'profiles'.
 
-Cette migration permet de transférer les données existantes du modèle 'Profile' de l'ancienne
-application 'oc_lettings_site' vers la nouvelle application 'profiles'. Elle assure que les
-données de l'utilisateur, y compris la ville favorite, sont correctement copiées dans le nouveau
-modèle.
+Cette migration permet de transférer les données existantes du modèle 'Profile'
+de l'ancienne application 'oc_lettings_site' vers la nouvelle application
+'profiles'. Elle assure que les données de l'utilisateur, y compris la ville
+favorite, sont correctement copiées dans le nouveau modèle.
 """
 from django.db import migrations
 
 
 def transfer_data(apps, schema_editor):
     """
-    Transfert des données de l'ancien modèle 'Profile' vers le nouveau modèle 'Profile'.
+    Transfert des données de l'ancien modèle 'Profile' vers le nouveau modèle
+    'Profile'.
 
-    Cette fonction parcourt tous les enregistrements de l'ancien modèle 'Profile' et crée une copie
-    des enregistrements dans le nouveau modèle 'Profile' de l'application 'profiles'.
-    Elle s'assure que les utilisateurs et leurs villes favorites sont correctement transférés.
+    Cette fonction parcourt tous les enregistrements de l'ancien modèle
+    'Profile' et crée une copie des enregistrements dans le nouveau modèle
+    'Profile' de l'application 'profiles'. Elle s'assure que les utilisateurs
+    et leurs villes favorites sont correctement transférés.
 
     Paramètres :
-        apps (Apps): L'instance qui permet d'accéder aux modèles avant qu'ils ne soient appliqués
-        schema_editor (SchemaEditor): L'éditeur de schéma utilisé pour gérer la migration
+        apps (Apps): L'instance qui permet d'accéder aux modèles avant qu'ils
+        ne soient appliqués schema_editor (SchemaEditor): L'éditeur de schéma
+        utilisé pour gérer la migration
 
     Retour :
         None
@@ -41,12 +45,13 @@ def transfer_data(apps, schema_editor):
 
 class Migration(migrations.Migration):
     """
-    Migration pour transférer les données du modèle 'Profile' de l'ancienne application vers la
+    Migration pour transférer les données du modèle 'Profile' de l'ancienne
+    application vers la
     nouvelle.
     """
     dependencies = [
         ('profiles', '0001_initial'),  # Dépend de la migration initiale
-        ('oc_lettings_site', '0001_initial'),  # Dépend de l'ancienne application
+        ('oc_lettings_site', '0001_initial'),  # Dépend de l'ancienne app
     ]
 
     operations = [

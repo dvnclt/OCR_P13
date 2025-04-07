@@ -1,19 +1,23 @@
 """
 Migration Django pour la création des modèles Address et Letting
 
-Cette migration définit la structure de la base de données pour les adresses et les locations
-Elle comprend la création des modèles et la définition des champs avec leurs contraintes
+Cette migration définit la structure de la base de données pour les adresses
+et les locations. Elle comprend la création des modèles et la définition des
+champs avec leurs contraintes.
 
-Une migration supplémentaire permet de transférer les données des anciens modèles vers les nouveaux
+Une migration supplémentaire permet de transférer les données des anciens
+modèles vers les nouveaux
 """
 from django.db import migrations
 
 
 def transfer_data(apps, schema_editor):
     """
-    Transfère les données des anciens modèles Address et Letting vers les nouveaux
+    Transfère les données des anciens modèles Address et Letting vers les
+    nouveaux
 
-    Récupère les anciennes données, les copie dans les nouvelles tables et affiche des logs pour
+    Récupère les anciennes données, les copie dans les nouvelles tables et
+    affiche des logs pour
     le suivi du processus
     """
     OldAddress = apps.get_model('oc_lettings_site', 'Address')
@@ -49,7 +53,8 @@ def transfer_data(apps, schema_editor):
 
 class Migration(migrations.Migration):
     """
-    Migration permettant le transfert des données des anciens modèles vers les nouveaux
+    Migration permettant le transfert des données des anciens modèles vers les
+    nouveaux
     """
     dependencies = [
         ('lettings', '0001_initial'),  # Dépend de la migration initiale

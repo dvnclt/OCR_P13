@@ -2,8 +2,9 @@
 """
 Migration Django pour la suppression des modèles Address, Letting et Profile
 
-Cette migration supprime les champs et les modèles liés à l'application oc_lettings_site,
-notamment Address, Letting et Profile, en supprimant d'abord leurs relations
+Cette migration supprime les champs et les modèles liés à l'application
+oc_lettings_site, notamment Address, Letting et Profile, en supprimant d'abord
+leurs relations
 """
 from django.db import migrations
 

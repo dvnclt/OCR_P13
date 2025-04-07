@@ -1,9 +1,10 @@
 """
 Enregistrement des modèles dans l'interface d'administration Django.
 
-Ce fichier permet d'enregistrer les modèles 'Letting', 'Address' et 'Profile' dans
-l'interface d'administration Django. Cela permet de gérer ces modèles via l'interface
-administrative sans avoir à manipuler directement la base de données.
+Ce fichier permet d'enregistrer les modèles 'Letting', 'Address' et 'Profile'
+dans l'interface d'administration Django. Cela permet de gérer ces modèles via
+l'interface administrative sans avoir à manipuler directement la base de
+données.
 """
 from django.contrib import admin
 
