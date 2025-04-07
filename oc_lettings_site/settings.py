@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,12 +14,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['holiday-homes-qbq8.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -65,6 +66,19 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'oc_lettings_site.wsgi.application'
+
+
+# Pour le CSRF (Cross-Site Request Forgery)
+CSRF_COOKIE_SECURE = True  # Définit ce cookie comme sécurisé
+CSRF_TRUSTED_ORIGINS = ['https://holiday-homes-qbq8.onrender.com']
+
+# SSL / HTTPS
+SECURE_SSL_REDIRECT = True  # Redirige vers HTTPS
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Sécuriser les cookies
+SESSION_COOKIE_SECURE = True
 
 
 # Database
@@ -121,7 +135,6 @@ STATICFILES_DIRS = [BASE_DIR / "static", ]
 
 
 # Initialisation de Sentry
-load_dotenv()
 sentry_sdk.init(
     dsn=os.getenv("SENTRY_DSN"),  # Récupère le DSN depuis les variables d'environnement
     integrations=[DjangoIntegration()],
