@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -114,11 +115,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Chemin où les fichiers statiques collectés seront stockés
+# Répertoire où Django collectera les fichiers statiques
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Répertoire où Django trouve les fichiers statiques à collecter
-STATICFILES_DIRS = [BASE_DIR / "static", ]
+# Répertoires supplémentaires pour les fichiers statiques (si nécessaire)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# Utilisation de WhiteNoise pour servir les fichiers statiques
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Initialisation de Sentry
