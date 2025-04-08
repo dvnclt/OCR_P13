@@ -29,4 +29,4 @@ jobs:
 
     - name: Deploy to Read the Docs
       run: |
-        curl -X POST -H "Authorization: token READTHEDOCS_TOKEN" https://readthedocs.org/api/v3/projects/ocr-p13-home-holidays/builds/
+        curl -X POST -H "Authorization: token READTHEDOCS_TOKEN" https://readthedocs.org/api/v3/projects/ocr-p13-test/builds/
