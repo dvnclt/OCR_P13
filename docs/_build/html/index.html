@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html lang="fr" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Holiday Homes documentation &#8212; Documentation Holiday Homes 1.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=7a28dfa3"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=041d0952"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="holiday-homes-documentation">
+<h1>Holiday Homes documentation<a class="headerlink" href="#holiday-homes-documentation" title="Lien vers cette rubrique">¶</a></h1>
+<section id="description-du-projet">
+<h2>1. Description du projet<a class="headerlink" href="#description-du-projet" title="Lien vers cette rubrique">¶</a></h2>
+<p>Ce projet est une application Django appelée <strong>Holiday Homes</strong>, qui permet de gérer des profils et des locations de vacances. Elle inclut des fonctionnalités comme :</p>
+<ul class="simple">
+<li><p>Gestion des profils utilisateurs.</p></li>
+<li><p>Gestion des annonces de locations.</p></li>
+<li><p>Administration via l’interface Django Admin.</p></li>
+<li><p>Intégration de Sentry pour la gestion des erreurs.</p></li>
+<li><p>L’application est conteneurisée avec Docker et déployée sur Render via un pipeline CI/CD.</p></li>
+</ul>
+</section>
+<section id="instructions-d-installation">
+<h2>2. Instructions d’installation<a class="headerlink" href="#instructions-d-installation" title="Lien vers cette rubrique">¶</a></h2>
+<p>### Prérequis</p>
+<ul class="simple">
+<li><p>Python 3.9 ou supérieur.</p></li>
+<li><p>Docker et Docker Compose.</p></li>
+<li><p>Un compte Docker Hub.</p></li>
+<li><p>Un compte Render.</p></li>
+</ul>
+<p>### Étapes d’installation</p>
+<ol class="arabic">
+<li><p>Clonez le dépôt Git :</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>&lt;url-du-dépôt&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Créez l’environnement virtuel et installez les dépendances Python :</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>env
+<span class="nb">source</span><span class="w"> </span>env/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Configurez les variables d’environnement dans un fichier <cite>.env</cite> :</p>
+<blockquote>
+<div><p>Créez un fichier <cite>.env</cite> à la racine du projet et ajoutez les variables suivantes :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SENTRY_DSN</span><span class="o">=&lt;</span><span class="n">votre</span><span class="o">-</span><span class="n">dsn</span><span class="o">-</span><span class="n">sentry</span><span class="o">&gt;</span>
+<span class="n">DOCKER_USERNAME</span><span class="o">=&lt;</span><span class="n">votre</span><span class="o">-</span><span class="n">nom</span><span class="o">-</span><span class="n">utilisateur</span><span class="o">-</span><span class="n">docker</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Lancez le serveur local :</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./run_docker.sh
+</pre></div>
+</div>
+<p>Accédez à l’application à l’adresse : <cite>http://127.0.0.1:8000</cite>.</p>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="technologies-et-langages-utilises">
+<h2>3. Technologies et langages utilisés<a class="headerlink" href="#technologies-et-langages-utilises" title="Lien vers cette rubrique">¶</a></h2>
+<ul class="simple">
+<li><p>Langage principal : Python 3.9.</p></li>
+<li><p>Framework : Django 3.0.</p></li>
+<li><p>Base de données : SQLite (en développement) et PostgreSQL (en production - Render).</p></li>
+<li><p>Conteneurisation : Docker.</p></li>
+<li><p>CI/CD : GitHub Actions.</p></li>
+<li><p>Hébergement : Render.</p></li>
+<li><p>Gestion des erreurs : Sentry.</p></li>
+</ul>
+</section>
+<section id="structure-de-la-base-de-donnees-et-des-modeles">
+<h2>4. Structure de la base de données et des modèles<a class="headerlink" href="#structure-de-la-base-de-donnees-et-des-modeles" title="Lien vers cette rubrique">¶</a></h2>
+<p>### Modèles principaux</p>
+<p>#### <strong>Profile</strong> (dans l’application <cite>profiles</cite>) :</p>
+<ul class="simple">
+<li><p><cite>user</cite> : Clé étrangère vers le modèle utilisateur de Django (<cite>django.contrib.auth.models.User</cite>).</p></li>
+<li><p><cite>favorite_city</cite> : Ville préférée de l’utilisateur (type <cite>CharField</cite>).</p></li>
+</ul>
+<p>#### <strong>Address</strong> (dans l’application <cite>lettings</cite>) :</p>
+<ul class="simple">
+<li><p><cite>number</cite> : Numéro de rue (type <cite>PositiveIntegerField</cite>, max : 9999).</p></li>
+<li><p><cite>street</cite> : Nom de la rue (type <cite>CharField</cite>, max : 64 caractères).</p></li>
+<li><p><cite>city</cite> : Ville (type <cite>CharField</cite>, max : 64 caractères).</p></li>
+<li><p><cite>state</cite> : Code d’état (type <cite>CharField</cite>, exactement 2 caractères).</p></li>
+<li><p><cite>zip_code</cite> : Code postal (type <cite>PositiveIntegerField</cite>, max : 99999).</p></li>
+<li><p><cite>country_iso_code</cite> : Code ISO du pays (type <cite>CharField</cite>, exactement 3 caractères).</p></li>
+</ul>
+<p>#### <strong>Letting</strong> (dans l’application <cite>lettings</cite>) :</p>
+<ul class="simple">
+<li><p><cite>title</cite> : Titre de la location (type <cite>CharField</cite>, max : 256 caractères).</p></li>
+<li><p><cite>address</cite> : Adresse associée à la location (relation <cite>OneToOneField</cite> avec le modèle <cite>Address</cite>).</p></li>
+</ul>
+<p>### Exemple de structure des tables dans la base de données</p>
+<p>#### <strong>Table `profiles_profile` :</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Champ</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>id</cite></p></td>
+<td><p><cite>AutoField</cite></p></td>
+<td><p>Identifiant unique du profil.</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>user_id</cite></p></td>
+<td><p><cite>ForeignKey</cite></p></td>
+<td><p>Référence à un utilisateur Django.</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><cite>favorite_city</cite> | <cite>CharField</cite></p></td>
+<td><p>Ville préférée de l’utilisateur.</p></td>
+</tr>
+</tbody>
+</table>
+<p>#### <strong>Table `lettings_address` :</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Champ</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>id</cite></p></td>
+<td><p><cite>AutoField</cite></p></td>
+<td><p>Identifiant unique de l’adresse.</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>number</cite></p></td>
+<td colspan="2"><p><cite>PositiveIntegerField</cite> | Numéro de rue (max : 9999).</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>street</cite></p></td>
+<td><p><cite>CharField</cite></p></td>
+<td><p>Nom de la rue (max : 64 caractères).</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>city</cite></p></td>
+<td><p><cite>CharField</cite></p></td>
+<td><p>Ville (max : 64 caractères).</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>state</cite></p></td>
+<td><p><cite>CharField</cite></p></td>
+<td><p>Code d’état (exactement 2 caractères).</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>zip_code</cite></p></td>
+<td colspan="2"><p><cite>PositiveIntegerField</cite> | Code postal (max : 99999).</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><cite>country_iso_code</cite> | <cite>CharField</cite></p></td>
+<td><p>Code ISO du pays (exactement 3 caractères).</p></td>
+</tr>
+</tbody>
+</table>
+<p>#### <strong>Table `lettings_letting` :</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Champ</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>id</cite>
+<cite>title</cite>
+<cite>address_id</cite></p></td>
+<td><p><cite>AutoField</cite>
+<cite>CharField</cite>
+<cite>OneToOneField</cite></p></td>
+<td><p>Identifiant unique de la location.
+Titre de la location (max : 256 caractères).
+Référence à une adresse unique.</p></td>
+</tr>
+</tbody>
+</table>
+<p>### Relations entre les modèles</p>
+<ul class="simple">
+<li><p><strong>Profile</strong> est lié à un utilisateur Django via une clé étrangère (<cite>ForeignKey</cite>).</p></li>
+<li><p><strong>Letting</strong> est lié à une <strong>Address</strong> via une relation <cite>OneToOneField</cite> (une location a une adresse unique).</p></li>
+</ul>
+</section>
+<section id="interfaces-de-programmation">
+<h2>5. Interfaces de programmation<a class="headerlink" href="#interfaces-de-programmation" title="Lien vers cette rubrique">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nom</p></th>
+<th class="head"><p>URL</p></th>
+<th class="head"><p>Méthode</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Page d’accueil</strong></p></td>
+<td><p><cite>/</cite></p></td>
+<td><p><cite>GET</cite></p></td>
+<td><p>Affiche la page d’accueil de l’application.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Liste des locations</strong></p></td>
+<td><p><cite>/lettings/</cite></p></td>
+<td><p><cite>GET</cite></p></td>
+<td><p>Affiche la liste des locations disponibles.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Détail d’une location</strong></p></td>
+<td><p><cite>/lettings/&lt;int:letting_id&gt;/</cite></p></td>
+<td><p><cite>GET</cite></p></td>
+<td><p>Affiche les détails d’une location spécifique.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Liste des profils</strong></p></td>
+<td><p><cite>/profiles/</cite></p></td>
+<td><p><cite>GET</cite></p></td>
+<td><p>Affiche la liste des profils utilisateurs.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Détail d’un profil</strong></p></td>
+<td><p><cite>/profiles/&lt;str:username&gt;/</cite></p></td>
+<td><p><cite>GET</cite></p></td>
+<td><p>Affiche les détails d’un profil utilisateur spécifique.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Administration Django</strong></p></td>
+<td><p><cite>/admin/</cite></p></td>
+<td><p><cite>GET</cite></p></td>
+<td><p>Permet d’accéder à l’interface d’administration Django.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Test Sentry</strong></p></td>
+<td><p><cite>/sentry-test/</cite></p></td>
+<td><p><cite>GET</cite></p></td>
+<td><p>Provoque une erreur pour tester l’intégration avec Sentry.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Test Middleware</strong></p></td>
+<td><p><cite>/middleware-test/</cite></p></td>
+<td><p><cite>GET</cite></p></td>
+<td><p>Provoque une erreur non gérée pour tester le middleware.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="guide-d-utilisation">
+<h2>6. Guide d’utilisation<a class="headerlink" href="#guide-d-utilisation" title="Lien vers cette rubrique">¶</a></h2>
+<p>### Cas d’utilisation</p>
+<p>#### 1. Gérer les profils utilisateurs</p>
+<p>La gestion des profils utilisateurs (création, modification, suppression) se fait via le panneau d’administration Django.</p>
+<p><strong>Étapes :</strong>
+1. Accédez à <cite>/admin/</cite> et connectez-vous avec vos identifiants administrateur.
+2. Connectez-vous avec l’utilisateur <cite>admin</cite>, mot de passe <cite>Abc1234!</cite>.
+3. Dans la section <strong>Profiles</strong>, cliquez sur <strong>Add</strong> pour créer un nouveau profil ou sélectionnez un profil existant pour le modifier.
+4. Remplissez les informations nécessaires et enregistrez.</p>
+<p>#### 2. Ajouter une annonce de location</p>
+<p>L’ajout et la gestion des annonces de locations se font également via le panneau d’administration Django.</p>
+<p><strong>Étapes :</strong>
+1. Accédez à <cite>/admin/</cite> et connectez-vous avec vos identifiants administrateur.
+2. Dans la section <strong>Lettings</strong>, cliquez sur <strong>Add</strong> pour créer une nouvelle annonce ou sélectionnez une annonce existante pour la modifier.
+3. Remplissez les informations nécessaires et enregistrez.</p>
+</section>
+<section id="procedures-de-deploiement-et-de-gestion">
+<h2>7. Procédures de déploiement et de gestion<a class="headerlink" href="#procedures-de-deploiement-et-de-gestion" title="Lien vers cette rubrique">¶</a></h2>
+<p>### Déploiement</p>
+<p>#### Récapitulatif du fonctionnement du déploiement</p>
+<p>Le déploiement utilise un pipeline CI/CD configuré dans le fichier <cite>.github/workflows/ci.yml</cite>. Ce pipeline :
+1. Exécute des tests et vérifie la qualité du code.
+2. Construit une image Docker de l’application.
+3. Pousse automatiquement l’image Docker sur Docker Hub.
+4. Déclenche un déploiement sur Render en utilisant un <strong>Deploy Hook</strong>.</p>
+<p>#### Configuration requise</p>
+<ol class="arabic">
+<li><p><strong>Docker Hub</strong> :
+- Un compte Docker Hub est nécessaire pour stocker l’image Docker.
+- Générez un Token pour permettre à Render d’accéder à l’image.
+- Les secrets <cite>DOCKER_USERNAME</cite> et <cite>DOCKER_TOKEN</cite> doivent être configurés dans les <strong>Secrets GitHub</strong>.</p></li>
+<li><p><strong>Render</strong> :
+- Un compte Render est requis.
+- Configurez un service Docker (Existing Image) sur Render pour déployer l’application.
+- Servez-vous du Token généré précédemment sur Docker pour l’authentification.
+- Ajoutez un <strong>Deploy Hook</strong> dans Render et configurez-le comme secret <cite>RENDER_DEPLOY_HOOK_URL</cite> dans GitHub.</p></li>
+<li><p><strong>Variables d’environnement</strong> :
+- Les variables suivantes doivent être définies dans l’environnement Render :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>SECRET_KEY</cite> : Une clé secrète pour Django.</p></li>
+<li><p><cite>SENTRY_DSN</cite> : Le DSN pour Sentry (facultatif, pour la gestion des erreurs).</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p>#### Étapes pour effectuer le déploiement</p>
+<ol class="arabic">
+<li><p><strong>Poussez vos modifications sur GitHub</strong> :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Assurez-vous que vos modifications sont poussées sur la branche <cite>main</cite> ou <cite>dev</cite> (selon votre configuration).</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt><strong>Pipeline CI/CD</strong> :</dt><dd><ul class="simple">
+<li><p>Une fois les modifications poussées, le pipeline CI/CD s’exécute automatiquement :
+- Les tests sont exécutés.
+- Une image Docker est construite et poussée sur Docker Hub.
+- Un déploiement est déclenché sur Render via le <strong>Deploy Hook</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Vérifiez le déploiement</strong> :</dt><dd><ul class="simple">
+<li><p>Une fois le pipeline terminé, accédez à l’URL fournie par Render (par exemple, <cite>https://holiday-homes-1gb4.onrender.com</cite>) pour vérifier que l’application fonctionne correctement.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<p>#### Notes supplémentaires
+- Si des modifications sont apportées au code, poussez-les simplement sur GitHub pour déclencher un nouveau déploiement.
+- Consultez les logs GitHub Actions pour vérifier l’état du pipeline CI/CD.
+- Consultez les logs Render en cas de problème pour identifier les erreurs.</p>
+</section>
+<section id="journalisation">
+<h2>8. Journalisation<a class="headerlink" href="#journalisation" title="Lien vers cette rubrique">¶</a></h2>
+<p>### Configuration de Sentry</p>
+<p>Si non installé depuis le <cite>requirements.txt</cite> :
+1. Installez <cite>sentry-sdk</cite> :</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sentry-sdk
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p>Ajoutez votre DSN Sentry dans <cite>.env</cite> :</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SENTRY_DSN</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">your_sentry_dsn</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>La configuration de Sentry se trouve dans <cite>settings.py</cite> :</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sentry_sdk</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="n">dsn</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;SENTRY_DSN&quot;</span><span class="p">),</span>
+    <span class="n">integrations</span><span class="o">=</span><span class="p">[</span><span class="n">DjangoIntegration</span><span class="p">()],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>La configuration du logging se trouve dans <cite>settings.py</cite> :</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LOGGING</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>### Test de Sentry</p>
+<p>Des vues et urls de test ont été définies dans l’app <cite>oc_lettings_site</cite>.</p>
+<p><cite>def test_sentry_error</cite> : Provoque une erreur (division par zéro) pour vérifier que Sentry la capture bien.
+Le test se fait depuis l’URL : <cite>http://127.0.0.1:8000/sentry-test/</cite></p>
+<p><cite>def test_middleware_error</cite> : Provoque une erreur non gérée pour vérifier que Sentry la capture bien.
+Le test se fait depuis l’URL : <cite>http://127.0.0.1:8000/middleware-test/</cite></p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Holiday Homes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, dv.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
