@@ -4,22 +4,10 @@ version: 2  # Spécifie la version du fichier de configuration
 
 # Définit l'environnement dans lequel la documentation sera construite
 build:
-  image: "python:3.9"  # Utilise une image Docker Python 3.9 pour construire la doc
-  os: ubuntu-20.04  # Utilise Ubuntu 20.04 pour la construction
-
-# Installe les dépendances nécessaires avant de construire la documentation
-dependencies:
-  install:
-    - requirements: ./requirements.txt  # Installe les dépendances depuis requirements.txt
-    - pip:
-        - sphinx  # Installe Sphinx
-        - sphinx_rtd_theme  # Installe le thème Read the Docs pour Sphinx
+  os: ubuntu-22.04
+  tools:
+    python: "3.9"
 
 # Configuration des fichiers de documentation
 sphinx:
   configuration: docs/conf.py  # Fichier de configuration Sphinx à utiliser (par défaut conf.py dans docs/)
-
-# Ajoute un environnement virtuel si nécessaire
-python:
-  version: 3.9  # Utilise Python 3.9 pour la documentation
-  install: true  # Installe les dépendances Python nécessaires avant de commencer la construction
