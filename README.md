@@ -33,3 +33,5 @@ Le test se fait depuis l'URL : `http://127.0.0.1:8000/sentry-test/`
 
 `def test_middleware_error` : Provoque une erreur non gérée pour vérifier que Sentry la capture bien.
 Le test se fait depuis l'URL : `http://127.0.0.1:8000/middleware-test/`
+
+A compléter
