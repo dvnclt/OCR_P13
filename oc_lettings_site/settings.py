@@ -20,9 +20,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['holiday-homes-qbq8.onrender.com', 'localhost', '127.0.0.1']
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'oc_lettings_site.apps.OCLettingsSiteConfig',
     'lettings.apps.LettingsConfig',
@@ -114,9 +112,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_URL = '/static/'
+
+# Chemin où les fichiers statiques collectés seront stockés
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATIC_URL = '/static/'
+# Répertoire où Django trouve les fichiers statiques à collecter
 STATICFILES_DIRS = [BASE_DIR / "static", ]
 
 
